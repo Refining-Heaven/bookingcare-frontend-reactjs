@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
 import { getAllUsers, createNewUserService, deleteUserService, editUserService } from '../../services/userService';
-import ModalUser from './ModalUser';
+import ModalCreatelUser from './ModalCreatelUser';
 import ModalEditUser from './ModalEditUser';
 import { emitter } from '../../utils/emitter';
 
@@ -13,7 +13,7 @@ class UserManage extends Component {
 		super(props);
 		this.state = {
 			arrUsers: [],
-			isOpenModalUser: false,
+			isOpenModalCreatelUser: false,
 			userEdit: {},
 			isOpenModalEditUser: false,
 		};
@@ -34,7 +34,7 @@ class UserManage extends Component {
 
 	handleAddNewUser = () => {
 		this.setState({
-			isOpenModalUser: true
+			isOpenModalCreatelUser: true
 		})
 	}
 
@@ -80,7 +80,7 @@ class UserManage extends Component {
 
 	toggleCreateUserModal = () => {
 		this.setState({
-			isOpenModalUser: !this.state.isOpenModalUser
+			isOpenModalCreatelUser: !this.state.isOpenModalCreatelUser
 		})
 	}
 
@@ -98,7 +98,7 @@ class UserManage extends Component {
 			} else {
 				await this.getAllUsersFromReact()
 				this.setState({
-					isOpenModalUser: false
+					isOpenModalCreatelUser: false
 				})
 				emitter.emit('EVENT_CLEAR_MODAL_DATA')
 			}
@@ -111,8 +111,8 @@ class UserManage extends Component {
 		const arrUsers = this.state.arrUsers;
 		return (
 			<div className="users-container">
-				<ModalUser
-					isOpen={this.state.isOpenModalUser}
+				<ModalCreatelUser
+					isOpen={this.state.isOpenModalCreatelUser}
 					toggleCreateUserModal={this.toggleCreateUserModal}
 					createNewUser={this.createNewUser}
 				/>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { emitter } from '../../utils/emitter';
 
-class ModalUser extends Component {
+class ModalCreatelUser extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -174,4 +174,4 @@ const mapDispatchToProps = (dispatch) => {
 	return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalCreatelUser);
