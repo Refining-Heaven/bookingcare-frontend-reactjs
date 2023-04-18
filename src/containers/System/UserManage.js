@@ -3,8 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
 import { getAllUsers, createNewUserService, deleteUserService, editUserService } from '../../services/userService';
-import ModalCreatelUser from './ModalCreatelUser';
-import ModalEditUser from './ModalEditUser';
+import ModalCreatelUser from './ModalCreatelUser.js';
+import ModalEditUser from './ModalEditUser.js';
 import { emitter } from '../../utils/emitter';
 
 class UserManage extends Component {
