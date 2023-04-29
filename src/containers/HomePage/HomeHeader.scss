@@ -2,6 +2,10 @@
   width  : 100%;
   height : 60px;
   padding: 0 40px;
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  z-index: 1000;
 
   .home-header-content {
     width  : 100%;
@@ -51,9 +55,9 @@
 
       .support {
         margin-right: 50px;
-        display      : flex;
-        align-items  : center;
-        cursor: pointer;
+        display     : flex;
+        align-items : center;
+        cursor      : pointer;
 
         i {
           font-size   : 15px;
@@ -62,8 +66,8 @@
       }
 
       .language {
-        margin: 0 5px;
-        cursor: pointer;
+        margin : 0 5px;
+        cursor : pointer;
         opacity: 0.2;
 
         &:hover {
@@ -84,6 +88,7 @@
 
 .home-header-banner {
   height             : 590px;
+  margin-top: 60px;
   background         : url('../../assets/header-background.jpg');
   background-size    : cover;
   background-position: center;
@@ -139,6 +144,7 @@
 
   .content-down {
     height          : 35%;
+    padding-bottom  : 10px;
     display         : flex;
     justify-content : center;
     align-items     : flex-end;
