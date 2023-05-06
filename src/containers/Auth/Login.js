@@ -38,7 +38,7 @@ class Login extends Component {
 			const data = await handleLoginApi(this.state.username, this.state.password);
 			if (data && data.errCode !== 0) {
 				this.setState({
-					errMessage: data.message,
+					errMessage: data.errMessage,
 				});
 			}
 			if (data && data.errCode === 0) {
@@ -48,7 +48,7 @@ class Login extends Component {
 			if (e.response) {
 				if (e.response.data) {
 					this.setState({
-						errMessage: e.response.data.message,
+						errMessage: e.response.data.errMessage,
 					});
 				}
 			}
@@ -62,6 +62,7 @@ class Login extends Component {
 	};
 
 	render() {
+		console.log();
 		return (
 			<div className="login-background">
 				<div className="login-container">

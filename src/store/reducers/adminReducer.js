@@ -1,33 +1,71 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    isLoggedIn: false,
-    adminInfo: null
-}
+	isLoadingGender: false,
+	genders: [],
+	roles: [],
+	positions: [],
+};
 
 const adminReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case actionTypes.ADMIN_LOGIN_SUCCESS:
-            return {
-                ...state,
-                isLoggedIn: true,
-                adminInfo: action.adminInfo
-            }
-        case actionTypes.ADMIN_LOGIN_FAIL:
-            return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
-            }
-        case actionTypes.PROCESS_LOGOUT:
-            return {
-                ...state,
-                isLoggedIn: false,
-                adminInfo: null
-            }
-        default:
-            return state;
-    }
-}
+	switch (action.type) {
+		case actionTypes.FETCH_GENDER_START:
+			state.isLoadingGender = true;
+			return {
+				...state,
+			};
+		case actionTypes.FETCH_GENDER_SUCCESS:
+			state.genders = action.data;
+			state.isLoadingGender = false;
+			return {
+				...state,
+			};
+		case actionTypes.FETCH_GENDER_FAILED:
+			state.genders = [];
+			state.isLoadingGender = [];
+			return {
+				...state,
+			};
+        case actionTypes.FETCH_POSITION_START:
+			return {
+				...state,
+			};
+		case actionTypes.FETCH_POSITION_SUCCESS:
+			state.positions = action.data;
+			return {
+				...state,
+			};
+		case actionTypes.FETCH_POSITION_FAILED:
+			state.positions = [];
+			return {
+				...state,
+			};
+        case actionTypes.FETCH_ROLE_START:
+			state.isLoadingGender = true;
+			return {
+				...state,
+			};
+		case actionTypes.FETCH_ROLE_SUCCESS:
+			state.roles = action.data;
+			return {
+				...state,
+			};
+		case actionTypes.FETCH_ROLE_FAILED:
+			state.roles = [];
+			return {
+				...state,
+			};
+			case actionTypes.CREATE_USER_SUCCESS:
+				return {
+					...state,
+				};
+				case actionTypes.CREATE_USER_FAILED:
+					return {
+						...state,
+					};
+		default:
+			return state;
+	}
+};
 
 export default adminReducer;
