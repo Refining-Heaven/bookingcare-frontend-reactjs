@@ -48,6 +48,7 @@
         "position": "Chức danh",
         "role": "Vai trò",
         "avatar": "Ảnh đại diện",
-        "save": "Lưu"
+        "create-user": "Tạo người dùng",
+        "save-changes": "Lưu thay dổi"
     }
 }
