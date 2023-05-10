@@ -45,21 +45,21 @@ class UserRedux extends Component {
 			const arrGenders = this.props.genderRedux;
 			this.setState({
 				genderArr: arrGenders,
-				gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : '',
+				gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
 			});
 		}
 		if (prevProps.positionRedux !== this.props.positionRedux) {
 			const arrPositions = this.props.positionRedux;
 			this.setState({
 				positionArr: arrPositions,
-				position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : '',
+				position: arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : '',
 			});
 		}
 		if (prevProps.roleRedux !== this.props.roleRedux) {
 			const arrRoles = this.props.roleRedux;
 			this.setState({
 				roleArr: arrRoles,
-				role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : '',
+				role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : '',
 			});
 		}
 		if (prevProps.usersList !== this.props.usersList) {
@@ -73,9 +73,9 @@ class UserRedux extends Component {
 				lastName: '',
 				phoneNumber: '',
 				address: '',
-				gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : '',
-				position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : '',
-				role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : '',
+				gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
+				position: arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : '',
+				role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : '',
 				avatar: '',
 				previewImgURL: '',
 				action: CRUD_ACTIONS.CREATE
@@ -86,6 +86,7 @@ class UserRedux extends Component {
 	handleOnChangeImage = async (event) => {
 		const data = event.target.files;
 		const file = data[0];
+		// encode base64
 		if (file) {
 			const base64 = await CommonUtils.getBase64(file)
 			const objectUrl = URL.createObjectURL(file);
@@ -160,6 +161,7 @@ class UserRedux extends Component {
 	};
 
 	handleEditUserFromParent = (user) => {
+		// decode base64
 		let imageBase64 = ''
 		if (user.image) {
 			imageBase64 = new Buffer(user.image, 'base64').toString('binary')
@@ -282,7 +284,7 @@ class UserRedux extends Component {
 										genders.length > 0 &&
 										genders.map((gender, index) => {
 											return (
-												<option key={index} value={gender.key}>
+												<option key={index} value={gender.keyMap}>
 													{language === LANGUAGES.VI ? gender.valueVi : gender.valueEn}
 												</option>
 											);
@@ -302,7 +304,7 @@ class UserRedux extends Component {
 										positions.length > 0 &&
 										positions.map((position, index) => {
 											return (
-												<option key={index} value={position.key}>
+												<option key={index} value={position.keyMap}>
 													{language === LANGUAGES.VI ? position.valueVi : position.valueEn}
 												</option>
 											);
@@ -318,7 +320,7 @@ class UserRedux extends Component {
 										roles.length > 0 &&
 										roles.map((role, index) => {
 											return (
-												<option key={index} value={role.key}>
+												<option key={index} value={role.keyMap}>
 													{language === LANGUAGES.VI ? role.valueVi : role.valueEn}
 												</option>
 											);

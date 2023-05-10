@@ -12,10 +12,11 @@ import About from "./Section/About";
 import HomeFooter from "./HomeFooter";
 
 class HomePage extends Component {
+
 	render() {
 		const settings = {
 			dots: false,
-			infinite: true,
+			infinite: false,
 			speed: 500,
 			slidesToShow: 4,
 			slideToScroll: 1,

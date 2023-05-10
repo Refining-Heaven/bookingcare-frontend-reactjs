@@ -1,5 +1,6 @@
 import actionTypes from './actionTypes';
 import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService } from '../../services/userService';
+import { getTopDoctorHomeService } from '../../services/doctorService'
 import { toast } from "react-toastify"
 
 // Gender
@@ -92,6 +93,7 @@ const fetchRoleFailed = () => ({
 	type: actionTypes.FETCH_ROLE_FAILED,
 });
 
+//
 const createNewUser = (data) => {
 	return async (dispatch, getState) => {
 		try {
@@ -203,6 +205,31 @@ const deleteUserFailed = () => ({
 	type: actionTypes.DELETE_USER_FAILED
 })
 
+const fetchTopDoctor = () => {
+	return async (dispatch, getState) => {
+		try {
+			const response = await getTopDoctorHomeService('6')
+			if (response && response.errCode === 0) {
+				dispatch(fetchTopDoctorSuccess(response.data))
+			} else {
+				dispatch(fetchTopDoctorFailed())
+			}
+		} catch (e) {
+			dispatch(fetchTopDoctorFailed())
+			console.log(e);
+		}
+	};
+}
+
+const fetchTopDoctorSuccess = (data) => ({
+	type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+	dataDoctors: data
+})
+
+const fetchTopDoctorFailed = () => ({
+	type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+})
+
 export {
   fetchGenderStart,
   fetchPositionStart,
@@ -210,5 +237,6 @@ export {
 	createNewUser,
 	fetchAllUsersStart,
 	editUser,
-	deleteUser
+	deleteUser,
+	fetchTopDoctor
 };

@@ -35,7 +35,7 @@
         }
 
         &.section-out-standing-doctor {
-          background-image: url('../../assets/outstanding-doctor/anh-dai-dien.jpg');
+          // background-image: url('../../assets/outstanding-doctor/anh-dai-dien.jpg');
           width           : 120px;
           height          : 120px;
           border-radius   : 50%;
@@ -53,7 +53,7 @@
   height: 330px;
 
   .section-container {
-    margin        : 0 180px;
+    margin        : 0 160px;
     display       : flex;
     flex-direction: column;
 
@@ -93,7 +93,11 @@
       }
 
       .slick-list {
-        margin-left: 12px;
+        margin: 0 6px;
+      }
+      
+      .slick-disabled {
+        display: none !important;
       }
 
       .slick-prev {
