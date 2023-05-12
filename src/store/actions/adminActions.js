@@ -1,6 +1,6 @@
 import actionTypes from './actionTypes';
 import { getAllCodeService, createNewUserService, getAllUsers, deleteUserService, editUserService } from '../../services/userService';
-import { getTopDoctorHomeService } from '../../services/doctorService'
+import { getTopDoctorHomeService, getAllDoctors, saveInfoDoctor, getInfoDoctor } from '../../services/doctorService'
 import { toast } from "react-toastify"
 
 // Gender
@@ -230,6 +230,83 @@ const fetchTopDoctorFailed = () => ({
 	type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
 })
 
+const fetchAllDoctors = () => {
+	return async (dispatch, getState) => {
+		try {
+			const response = await getAllDoctors()
+			if (response && response.errCode === 0) {
+				dispatch(fetchAllDoctorsSuccess(response.data))
+			} else {
+				dispatch(fetchAllDoctorsFailed())
+			}
+		} catch (e) {
+			dispatch(fetchAllDoctorsFailed())
+			console.log(e);
+		}
+	};
+}
+
+const fetchAllDoctorsSuccess = (data) => ({
+	type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+	dataDoctors: data
+})
+
+const fetchAllDoctorsFailed = () => ({
+	type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+})
+
+const saveInfoOfDoctor = (data) => {
+	return async (dispatch, getState) => {
+		try {
+			const response = await saveInfoDoctor(data)
+			if (response && response.errCode === 0) {
+				toast.success("Save doctor info succeed!")
+				dispatch(saveInfoDoctorSuccess())
+			} else {
+				toast.error("Save doctor info failed!")
+				dispatch(saveInfoDoctorFailed())
+			}
+		} catch (e) {
+			toast.error("Save doctor info failed!")
+			dispatch(saveInfoDoctorFailed())
+			console.log(e);
+		}
+	};
+}
+
+const saveInfoDoctorSuccess = () => ({
+	type: actionTypes.SAVE_INFO_DOCTOR_SUCCESS,
+})
+
+const saveInfoDoctorFailed = () => ({
+	type: actionTypes.SAVE_INFO_DOCTOR_FAILED,
+})
+
+const getInfoOfDoctor = (doctorId) => {
+	return async (dispatch, getState) => {
+		try {
+			const response = await getInfoDoctor(doctorId)
+			if (response && response.errCode === 0) {
+				dispatch(getInfoDoctorSuccess(response.data))
+			} else {
+				dispatch(getInfoDoctorFailed())
+			}
+		} catch (e) {
+			dispatch(getInfoDoctorFailed())
+			console.log(e);
+		}
+	};
+}
+
+const getInfoDoctorSuccess = (data) => ({
+	type: actionTypes.GET_INFO_DOCTOR_SUCCESS,
+	dataDoctor: data
+})
+
+const getInfoDoctorFailed = () => ({
+	type: actionTypes.GET_INFO_DOCTOR_FAILED,
+})	
+
 export {
   fetchGenderStart,
   fetchPositionStart,
@@ -238,5 +315,8 @@ export {
 	fetchAllUsersStart,
 	editUser,
 	deleteUser,
-	fetchTopDoctor
+	fetchTopDoctor,
+	fetchAllDoctors,
+	saveInfoOfDoctor,
+	getInfoOfDoctor
 };
